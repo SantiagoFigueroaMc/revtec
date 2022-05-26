@@ -1,3 +1,16 @@
 <div id="<%= dom_id client %>">
     <strong><%= client.name %></strong>
+    <div class="box">
+        <h2>Autos (<%= client.cars.count%>)</h2>
+            <% client.cars.each do |car| %>
+                <%= render car%>
+            <% end %>
+    </div>
+    <div class="box">
+    <h2>Direcciones (<%= client.addresses.count%>)</h2>
+        <% client.addresses.each do |address| %>
+            <%= render address%>
+        <% end %>
+      <%= link_to "Nueva dirección", new_address_path%>
+    </div>
 </div>

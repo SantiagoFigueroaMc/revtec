@@ -3,8 +3,16 @@
 <%= render @client %>
 
 <div>
-  <%= link_to "Edit this client", edit_client_path(@client) %> |
-  <%= link_to "Back to clients", clients_path %>
+  <%= form_with model: [@client, @client.cars.build ] do |form| %>
 
-  <%= button_to "Destroy this client", @client, method: :delete %>
+    <%= form.label :licence_plate %>
+    <%= form.text_field :licence_plate %>
+
+    <%= form.submit %>
+
+  <% end %>
+</div>
+
+<div>
+  <%= link_to "Edit this client", edit_client_path(@client) %> 
 </div>

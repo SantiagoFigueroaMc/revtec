@@ -8,6 +8,8 @@ class ClientsController < ApplicationController
 
   # GET /clients/1 or /clients/1.json
   def show
+    @cars = @client.cars
+    @addresses = @client.addresses
   end
 
   # GET /clients/new
