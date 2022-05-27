@@ -1,17 +1,84 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @client %>
+<div class="card">
+    <div class="card-header">
+        <h2><%= @client.name %></h2>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <h4>Autos</h4>
+                <% if @client.cars.count > 0 %>
+                    <% @client.cars.each do |car| %>
+                        <%= car.licence_plate %>
+                    <% end %>
+                <% else %>
+                    <p>No hay autos registrados</p>
+                <% end %>
+            </div>
+            <div class="col">
+                <h4>Direcciones</h4>
+                <% if @client.addresses.count > 0 %>
+                    <% @client.addresses.each_with_index do |address, index| %>
+                        #<%=index+1 %> <%= address.street %> <%= address.number %>, <%= address.state %>
+                    <% end %>
+                <% else %>
+                    <p>No hay direcciones registradas</p>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col">
+                <div class="form">
+                    <%= form_with model: [@client, @client.cars.build ] do |form| %>
+                        <div class="form-field">
+                            <%= form.label :licence_plate %>
+                            <%= form.text_field :licence_plate %>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <%= form.submit %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="form">
+                    <%= form_with model: [@client, @client.addresses.build ] do |form| %>
+                        <div class="form-field">
+                            <%= form.label :street %>
+                            <%= form.text_field :street %>
+                        </div>
+                        <div class="form-field">
+                            <%= form.label :city %>
+                            <%= form.text_field :city %>
+                        </div>
+                        <div class="form-field">
+                            <%= form.label :state %>
+                            <%= form.text_field :state %>
+                        </div>
+                        <div class="form-field">
+                            <%= form.label :number %>
+                            <%= form.text_field :number %>
+                        </div>
+                        <div class="form-field">
+                            <%= form.label :details %>
+                            <%= form.text_field :details %>
+                        </div>
+                        <div class="form-actions">
+                        <%= form.submit %>
+                        </div>
 
-<div>
-  <%= form_with model: [@client, @client.cars.build ] do |form| %>
-
-    <%= form.label :licence_plate %>
-    <%= form.text_field :licence_plate %>
-
-    <%= form.submit %>
-
-  <% end %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 <div>
   <%= link_to "Edit this client", edit_client_path(@client) %> 

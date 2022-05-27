@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   root to: "public#home"
 
+  get '/clients', to: redirect('public#home')
+
   resources :client do
     resources :cars
     resources :addresses

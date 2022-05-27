@@ -9,6 +9,16 @@ class CarsController < ApplicationController
     redirect_to client_path(@client)
   end
 
+  # DELETE /addresses/1 or /addresses/1.json
+  def destroy
+    @client = Client.find(@car.client_id)
+    @car.destroy
+
+    respond_to do |format|
+      format.html { redirect_to @client, notice: "Car was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_car

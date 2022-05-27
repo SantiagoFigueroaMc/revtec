@@ -1,16 +1,34 @@
 <div id="<%= dom_id client %>">
-    <strong><%= client.name %></strong>
-    <div class="box">
-        <h2>Autos (<%= client.cars.count%>)</h2>
-            <% client.cars.each do |car| %>
-                <%= render car%>
-            <% end %>
-    </div>
-    <div class="box">
-    <h2>Direcciones (<%= client.addresses.count%>)</h2>
-        <% client.addresses.each do |address| %>
-            <%= render address%>
-        <% end %>
-      <%= link_to "Nueva dirección", new_address_path%>
+    <div class="card">
+        <div class="card-header">
+            <h2><%= client.name %></h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <h4>Autos</h4>
+                    <% if client.cars.count > 0 %>
+                        <% client.cars.each do |car| %>
+                            <%= car.licence_plate %>
+                        <% end %>
+                    <% else %>
+                        <p>No hay autos registrados</p>
+                    <% end %>
+                </div>
+                <div class="col">
+                    <h4>Direcciones</h4>
+                    <% if client.addresses.count > 0 %>
+                        <% client.addresses.each_with_index do |address, index| %>
+                            #<%=index+1 %> <%= address.street %> <%= address.number %>, <%= address.state %>
+                        <% end %>
+                    <% else %>
+                        <p>No hay direcciones registradas</p>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <%= button_to "Ver", client, method: :get %>
+        </div>
     </div>
 </div>

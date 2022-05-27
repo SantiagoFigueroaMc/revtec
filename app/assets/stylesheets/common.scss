@@ -1,0 +1,43 @@
+.form{
+    margin: 10px auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-field{
+    margin-bottom: 10px;
+}
+.form-field label{
+    display: block;
+    margin-bottom: 5px;
+}
+.form-field input{
+    display: block;
+    width: auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.form-actions{
+    text-align: right;
+}
+
+.row{
+    display: flex;
+    margin-bottom: 10px;
+}
+.row::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+.col{
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+}

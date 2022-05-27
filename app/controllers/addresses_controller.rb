@@ -6,14 +6,6 @@ class AddressesController < ApplicationController
     @addresses = Address.all
   end
 
-  # GET /addresses/1 or /addresses/1.json
-  def show
-  end
-
-  # GET /addresses/new
-  def new
-    @address = Address.new
-  end
 
   # GET /addresses/1/edit
   def edit
@@ -21,17 +13,10 @@ class AddressesController < ApplicationController
 
   # POST /addresses or /addresses.json
   def create
-    @address = Address.new(address_params)
+    @client = Client.find(params[:client_id])
+    @address = @client.addresses.create(address_params)
 
-    respond_to do |format|
-      if @address.save
-        format.html { redirect_to address_url(@address), notice: "Address was successfully created." }
-        format.json { render :show, status: :created, location: @address }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @address.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to client_path(@client)
   end
 
   # PATCH/PUT /addresses/1 or /addresses/1.json
@@ -49,10 +34,11 @@ class AddressesController < ApplicationController
 
   # DELETE /addresses/1 or /addresses/1.json
   def destroy
+    @client = Client.find(@address.client_id)
     @address.destroy
 
     respond_to do |format|
-      format.html { redirect_to addresses_url, notice: "Address was successfully destroyed." }
+      format.html { redirect_to @client, notice: "Address was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -65,6 +51,6 @@ class AddressesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def address_params
-      params.fetch(:address, {})
+      params.fetch(:address, {}).permit(:street, :city, :state, :number, :details, :client_id)
     end
 end
