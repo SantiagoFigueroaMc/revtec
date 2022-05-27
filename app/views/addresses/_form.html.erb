@@ -1,7 +1,7 @@
-<%= form_with(model: address) do |form| %>
+<%= form_with model: [@client, @client.addresses.build ] do |form| %>
   <% if address.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(address.errors.count, "error") %> prohibited this address from being saved:</h2>
+      <h2><%= pluralize(address.errors.count, "error") %> no permitieron guardar esta dirección:</h2>
 
       <ul>
         <% address.errors.each do |error| %>
@@ -10,8 +10,27 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
-    <%= form.submit %>
+  <div class="form-field">
+      <%= form.label :street, "Calle" %>
+      <%= form.text_field :street %>
+  </div>
+  <div class="form-field">
+      <%= form.label :number, "Número" %>
+      <%= form.text_field :number %>
+  </div>
+  <div class="form-field">
+      <%= form.label :state, "Comuna" %>
+      <%= form.text_field :state %>
+  </div>
+  <div class="form-field">
+      <%= form.label :city, "Ciudad" %>
+      <%= form.text_field :city %>
+  </div>
+  <div class="form-field">
+      <%= form.label :details, "Detalles" %>
+      <%= form.text_field :details %>
+  </div>
+  <div class="form-actions">
+    <%= form.submit "Agregar", class:'btn btn-primary btn-block' %>
   </div>
 <% end %>

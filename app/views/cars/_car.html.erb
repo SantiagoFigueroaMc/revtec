@@ -1,5 +1,8 @@
-<div id="<%= dom_id car %>">
-    <strong><%= car.licence_plate %></strong>
-    
-    <%= button_to "Borrar", car, method: :delete %>
+<div id="<%= dom_id car %>" class="card m-2">
+    <div class="card-body">
+        <strong><%= car.licence_plate %></strong>
+        <div class="form-actions">
+            <%= button_to "Borrar", car, method: :delete, data: { confirm: "Are you sure?" }, class:'btn btn-danger' %>
+        </div>
+    </div>
 </div>

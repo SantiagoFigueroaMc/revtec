@@ -10,7 +10,7 @@
                 <h4>Autos</h4>
                 <% if @client.cars.count > 0 %>
                     <% @client.cars.each do |car| %>
-                        <%= car.licence_plate %>
+                        <%= render car %>
                     <% end %>
                 <% else %>
                     <p>No hay autos registrados</p>
@@ -20,7 +20,7 @@
                 <h4>Direcciones</h4>
                 <% if @client.addresses.count > 0 %>
                     <% @client.addresses.each_with_index do |address, index| %>
-                        #<%=index+1 %> <%= address.street %> <%= address.number %>, <%= address.state %>
+                        <%= render address %>
                     <% end %>
                 <% else %>
                     <p>No hay direcciones registradas</p>
@@ -32,47 +32,13 @@
         <div class="row">
             <div class="col">
                 <div class="form">
-                    <%= form_with model: [@client, @client.cars.build ] do |form| %>
-                        <div class="form-field">
-                            <%= form.label :licence_plate %>
-                            <%= form.text_field :licence_plate %>
-                        </div>
-                        
-                        <div class="form-actions">
-                            <%= form.submit %>
-                        </div>
-                    <% end %>
+                    <%= render "cars/form", car: @client.cars.build %>
                 </div>
             </div>
             
             <div class="col">
                 <div class="form">
-                    <%= form_with model: [@client, @client.addresses.build ] do |form| %>
-                        <div class="form-field">
-                            <%= form.label :street %>
-                            <%= form.text_field :street %>
-                        </div>
-                        <div class="form-field">
-                            <%= form.label :city %>
-                            <%= form.text_field :city %>
-                        </div>
-                        <div class="form-field">
-                            <%= form.label :state %>
-                            <%= form.text_field :state %>
-                        </div>
-                        <div class="form-field">
-                            <%= form.label :number %>
-                            <%= form.text_field :number %>
-                        </div>
-                        <div class="form-field">
-                            <%= form.label :details %>
-                            <%= form.text_field :details %>
-                        </div>
-                        <div class="form-actions">
-                        <%= form.submit %>
-                        </div>
-
-                    <% end %>
+                    <%= render "addresses/form", address: @client.addresses.build %>
                 </div>
             </div>
         </div>
