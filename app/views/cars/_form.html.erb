@@ -1,7 +1,7 @@
-<%= form_with(model: car) do |form| %>
+<%= form_with model: [@client, @client.cars.build ] do |form| %>
   <% if car.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:</h2>
+      <h2><%= pluralize(car.errors.count, "error") %> no permitieron guardar el auto:</h2>
 
       <ul>
         <% car.errors.each do |error| %>
@@ -11,10 +11,12 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :licence_plate %>
-    <%= form.text_field :licence_plate %>
-
-    <%= form.submit %>
+  <div class="form-field">
+      <%= form.label :licence_plate, "Patente" %>
+      <%= form.text_field :licence_plate %>
+  </div>
+  
+  <div class="form-actions">
+      <%= form.submit "Agregar auto", class:'btn btn-primary btn-block'%>
   </div>
 <% end %>

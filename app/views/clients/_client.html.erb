@@ -1,34 +1,42 @@
-<div id="<%= dom_id client %>">
-    <div class="card">
-        <div class="card-header">
-            <h2><%= client.name %></h2>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <h4>Autos</h4>
-                    <% if client.cars.count > 0 %>
-                        <% client.cars.each do |car| %>
-                            <%= car.licence_plate %>
-                        <% end %>
-                    <% else %>
-                        <p>No hay autos registrados</p>
+<div id="<%= dom_id client %>" class="card m-3">
+    <div class="card-header">
+        <h2><%= client.name %></h2>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <h4>Autos</h4>
+                <% if client.cars.count > 0 %>
+                    <% client.cars.each do |car| %>
+                        <div class="card m-1">
+                            <div class="card-body">
+                                <%= car.licence_plate %>
+                            </div>
+                        </div>
                     <% end %>
-                </div>
-                <div class="col">
-                    <h4>Direcciones</h4>
-                    <% if client.addresses.count > 0 %>
-                        <% client.addresses.each_with_index do |address, index| %>
-                            #<%=index+1 %> <%= address.street %> <%= address.number %>, <%= address.state %>
-                        <% end %>
-                    <% else %>
-                        <p>No hay direcciones registradas</p>
+                <% else %>
+                    <p>No hay autos registrados</p>
+                <% end %>
+            </div>
+            <div class="col">
+                <h4>Direcciones</h4>
+                <% if client.addresses.count > 0 %>
+                    <% client.addresses.each_with_index do |address, index| %>
+                        <div class="card m-1">
+                            <div class="card-body">
+                                #<%=index+1 %> <%= address.street %> <%= address.number %>, <%= address.state %>
+                            </div>
+                        </div>
                     <% end %>
-                </div>
+                <% else %>
+                    <p>No hay direcciones registradas</p>
+                <% end %>
             </div>
         </div>
-        <div class="card-footer">
-            <%= button_to "Ver", client, method: :get %>
+    </div>
+    <div class="card-footer">
+        <div class="form-actions">
+            <%= button_to "Ver", client, method: :get, class:"btn btn-primary btn-block" %>
         </div>
     </div>
 </div>
