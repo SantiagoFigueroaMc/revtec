@@ -11,7 +11,17 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-field">
+      <%= form.label :name, "Nombre" %>
+      <%= form.text_field :name %>
+  </div>
+  
+  <div class="form-field">
+      <%= form.label :phone, "Teléfono" %>
+      <%= form.text_field :phone %>
+  </div>
+  
+  <div class="form-actions">
+      <%= form.submit "Guardar", class:'btn btn-primary btn-block'%>
   </div>
 <% end %>
