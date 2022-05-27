@@ -1,0 +1,7 @@
+<div id="<%= dom_id address %>">
+    <div>
+        <%= address.street %> <%= address.number %>, <%= address.state %>, <%= address.city %>
+    </div>
+    <div><%= address.details %></div>
+    <%= button_to "Borrar", address, method: :delete %>
+</div>

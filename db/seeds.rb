@@ -14,3 +14,7 @@ Client.create!([
     {name: "Jenny Doe", phone: "123456789"},
     {name: "Juan Doe", phone: "123456789"}
 ])
+
+Address.create!([
+    {street: "Cerro el cepo", city: "Santiago", state: "Las Condes", number: "12434", details: "Casa"},
+])

@@ -1,5 +1,3 @@
 <% @clients.each do |client| %>
-    <div class="client-card">
-        <%= link_to client.name, client %>
-    </div>
-<% end %>
+      <%= render client %>
+    <% end %>
