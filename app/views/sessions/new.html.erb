@@ -1,0 +1,19 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Login</h1>
+
+<%= form_tag sessions_path do |form| %>
+    <div class="form-field">
+        <%= label_tag :email, "Correo" %>
+        <%= text_field_tag :email %>
+    </div>
+
+    <div class="form-field">
+        <%= label_tag :password, "Contraseña" %>
+        <%= password_field_tag :password %>
+    </div>
+
+    <div class="form-actions">
+        <%= submit_tag "Login", class:'btn btn-primary btn-block' %>
+    </div>
+<% end %>

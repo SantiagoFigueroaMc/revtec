@@ -1,0 +1,36 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Sign up</h1>
+
+<%= form_for @user do |form| %>
+    <% if @user.errors.any? %>
+        <div style="color: red">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+        <ul>
+            <% @user.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+            <% end %>
+        </ul>
+        </div>
+    <% end %>
+
+    <div class="form-field">
+        <%= form.label :email, "Correo" %>
+        <%= form.text_field :email %>
+    </div>
+    
+    <div class="form-field">
+        <%= form.label :password, "Contraseña" %>
+        <%= form.password_field :password %>
+    </div>
+  
+    <div class="form-field">
+        <%= form.label :password_confirmation, "Confirmar contraseña" %>
+        <%= form.password_field :password_confirmation %>
+    </div>
+
+    <div class="form-actions">
+        <%= form.submit "Guardar", class:'btn btn-primary btn-block'%>
+    </div>
+<% end %>
