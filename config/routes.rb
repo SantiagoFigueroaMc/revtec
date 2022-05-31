@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
   resources :cars
   resources :addresses
   resources :clients
@@ -8,7 +11,7 @@ Rails.application.routes.draw do
 
   root to: 'public#home'
 
-  get '/clients', to: redirect('public#home')
+  get 'about', to: 'public#about'
 
   resources :client do
     resources :cars

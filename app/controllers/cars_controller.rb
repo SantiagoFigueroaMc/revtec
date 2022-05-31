@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class CarsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_car, only: %i[show edit update destroy]
 
   # POST /cars or /cars.json
