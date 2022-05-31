@@ -13,11 +13,15 @@
     <!-- JavaScript Bundle with Popper -->
     <%= javascript_importmap_tags %>
   </head>
-
-  <div class="container">
-    <%= render "layouts/navbar" %>
-    <body>
-      <%= yield %>
-    </body>
-  </div>
+  <body>
+    <header>
+      <%= render "layouts/navbar" %>
+      <%= render "layouts/alerts" %>
+    </header>
+    <div class="container">
+        <main>
+          <%= yield %>
+        </main>
+    </div>
+  </body>
 </html>
