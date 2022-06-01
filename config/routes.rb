@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   resources :cars
   resources :addresses
   resources :clients
-  resources :users
+  resources :users do
+    resources :roles
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   root to: 'public#home'
