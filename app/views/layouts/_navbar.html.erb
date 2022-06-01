@@ -44,7 +44,7 @@
               </li>
             <% else %>
               <li>
-                <%= link_to " Perfil", user_path(@user), class:"dropdown-item bi bi-person" %>
+                <%= link_to " Perfil", user_path(current_user.id), class:"dropdown-item bi bi-person" %>
               </li>
               <li>
                 <%= button_to " Cerrar sesión", destroy_user_session_path, method: :delete, class:"dropdown-item bi bi-box-arrow-right" %>
