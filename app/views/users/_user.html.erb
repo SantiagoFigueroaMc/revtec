@@ -1,7 +1,8 @@
 <div id="<%= dom_id user %>">
     <div class="card-body">
-        <strong>Nombre: <%= current_user.first_name %></strong>
-        <strong>Apellido: <%= @user.last_name %></strong>
-        <strong>Correo: <%= @user.email %></strong>
+        <p>Nombre: <%= current_user.first_name %></p>
+        <p>Apellido: <%= @user.last_name %></p>
+        <p>Correo: <%= @user.email %></p>
+        <p>Rol: <%= @user.role.name %></p>
     </div>
 </div>
