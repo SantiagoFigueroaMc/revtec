@@ -11,17 +11,10 @@
   </head>
 
   <body>
-  <div class="main">
-    <div class="main-left">
-      <h2>
-        <%= link_to "Revisión al día", "/" %>
-      </h2>
-      <%= link_to "Agregar cliente", new_client_path%>
-    </div>
-    <div class="main-rigth">
-      <%= yield %>
-    </div>
-
-  </div>
+    <% if notice || alert %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+    <%= yield %>
   </body>
 </html>
