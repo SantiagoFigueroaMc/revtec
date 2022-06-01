@@ -20,3 +20,9 @@ Client.create!([
 Address.create!([
                   { street: 'Cerro el cepo', city: 'Santiago', state: 'Las Condes', number: '12434', details: 'Casa', client_id: 1 }
                 ])
+
+Role.create!([
+                { name: 'admin' },
+                { name: 'user' },
+                { name: 'client' }
+              ])
