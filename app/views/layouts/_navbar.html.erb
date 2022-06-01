@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <%= link_to "RevTec", root_path, class:"navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <% if current_user %>
+          <li class="nav-item">
+            <%= link_to "Clientes", clients_path, class:"nav-link"%>
+          </li>
+        <% end %>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-menu-button-wide"></i> <% if current_user %><%= current_user.first_name %><% else %> Sesión<% end %>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+          <% if current_user %>
+            <li><h6 class="dropdown-header">Acciones</h6></li>
+            <li>
+                <%= link_to " Crear cliente", new_client_path, class:"dropdown-item bi bi-person-plus" %>
+            </li>
+            <li>
+                <%= link_to " Agendar revisión", root_path, class:"dropdown-item bi bi-calendar-plus" %>
+            </li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+          <% end %>
+            <li><h6 class="dropdown-header">Sesión</h6></li>
+            <% if !current_user %>
+              <li>
+                <%= link_to " Crear cuenta", new_user_registration_path, class:"dropdown-item bi bi-person-plus" %>
+              </li>
+              <li>
+                <%= link_to " Iniciar sesión", new_user_session_path, class:"dropdown-item bi bi-box-arrow-in-right" %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to " Perfil", user_path(current_user.id), class:"dropdown-item bi bi-person" %>
+              </li>
+              <li>
+                <%= button_to " Cerrar sesión", destroy_user_session_path, method: :delete, class:"dropdown-item bi bi-box-arrow-right" %>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
