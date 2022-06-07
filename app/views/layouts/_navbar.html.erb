@@ -8,7 +8,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <% if current_user %>
           <li class="nav-item">
-            <%= link_to "Clientes", clients_path, class:"nav-link"%>
+            <%= link_to "Mis clientes", user_clients_url(current_user.id), class:"nav-link"%>
           </li>
         <% end %>
         <li class="nav-item">
@@ -25,7 +25,7 @@
           <% if current_user %>
             <li><h6 class="dropdown-header">Acciones</h6></li>
             <li>
-                <%= link_to " Crear cliente", new_client_path, class:"dropdown-item bi bi-person-plus" %>
+                <%= link_to " Crear cliente", new_user_client_path(current_user.id), class:"dropdown-item bi bi-person-plus" %>
             </li>
             <li>
                 <%= link_to " Agendar revisión", root_path, class:"dropdown-item bi bi-calendar-plus" %>

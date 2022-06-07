@@ -1,15 +1,19 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  devise_for :controllers
   resources :roles
   devise_for :users, controllers: {
-    sessions: 'users/sessions'
+    sessions: 'user/sessions',
+    registrations: 'user/registrations'
   }
-  resources :cars
-  resources :addresses
-  resources :clients
+
   resources :users do
     resources :roles
+    resources :clients do
+      resources :cars
+      resources :addresses
+    end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -17,8 +21,4 @@ Rails.application.routes.draw do
 
   get 'about', to: 'public#about'
 
-  resources :client do
-    resources :cars
-    resources :addresses
-  end
 end
