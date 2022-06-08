@@ -2,7 +2,7 @@
     <div class="card-body">
         <strong><%= car.licence_plate %></strong>
         <div class="form-actions">
-            <%= button_to "Borrar", user_client_car_url(@client.user_id, @client.id), method: :delete, class:"btn btn-danger"%>
+            <%= button_to "Borrar", user_client_car_path(@client.user_id, @client.id, car.id), method: :delete, class:"btn btn-danger"%>
         </div>
     </div>
 </div>

@@ -9,25 +9,23 @@ class CarsController < ApplicationController
     @client = Client.find(params[:client_id])
     @car = @client.cars.create(car_params)
 
-    redirect_to client_path(@client)
+    redirect_to user_client_path(@client.user_id, @client.id)
   end
 
   # DELETE /addresses/1 or /addresses/1.json
   def destroy
-    @client = Client.find(@car.client_id)
     @car.destroy
 
-    respond_to do |format|
-      format.html { redirect_to @client, notice: 'Car was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to user_client_path(@client.user_id, @client.id)
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_car
-    @car = Car.find(params[:id])
+    @user = User.find(params[:user_id])
+    @client = Client.find(params[:client_id])
+    @car = @client.cars.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
