@@ -1,0 +1,8 @@
+<div id="<%= dom_id user %>">
+    <div class="card-body">
+        <p>Nombre: <%= current_user.first_name %></p>
+        <p>Apellido: <%= @user.last_name %></p>
+        <p>Correo: <%= @user.email %></p>
+        <p>Rol: <%= @user.role.name %></p>
+    </div>
+</div>

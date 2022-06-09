@@ -1,35 +1,48 @@
 # frozen_string_literal: true
 
 class ClientsController < ApplicationController
-  before_action :set_client, only: %i[show edit update destroy]
+  before_action :authenticate_user!
+  before_action :set_client, only: %i[show edit update destroy share]
 
   # GET /clients or /clients.json
   def index
-    @clients = Client.all
+    @user = User.find(params[:user_id])
+    @clients = @user.clients.all
+    @shared_clients = Client.where('shared = ? and user_id != ?', true, @user.id)
   end
 
   # GET /clients/1 or /clients/1.json
-  def show; end
+  def show
+    @user = User.find(params[:user_id])
+  end
 
   # GET /clients/new
   def new
+    @user = User.find(params[:user_id])
     @client = Client.new
   end
 
   # GET /clients/1/edit
-  def edit; end
+  def edit
+    @user = User.find(params[:user_id])
+  end
 
   # POST /clients or /clients.json
   def create
-    @client = Client.new(client_params)
+    @user = User.find(params[:user_id])
+    @client = @user.clients.create(client_params)
 
-    respond_to do |format|
-      if @client.save
-        format.html { redirect_to client_url(@client), notice: 'Client was successfully created.' }
-        format.json { render :show, status: :created, location: @client }
+    redirect_to user_clients_url(@user)
+  end
+
+  def share
+    @user = User.find(params[:user_id])
+    @client = Client.find(params[:id])
+    if (@user.id == @client.user_id) then
+      if @client.shared then
+        @client.update(shared: false)
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @client.errors, status: :unprocessable_entity }
+        @client.update(shared: true)
       end
     end
   end

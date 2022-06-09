@@ -1,6 +1,6 @@
 <div id="<%= dom_id client %>" class="card m-3">
     <div class="card-header">
-        <h2><%= client.name %> <%= client.phone %></h2>
+        <h2><%= client.name %> <%= client.phone %> <%= if (client.user_id == @user.id && client.shared) then 'Compartido' end %></h2>
     </div>
     <div class="card-body">
         <div class="row">
@@ -36,7 +36,7 @@
     </div>
     <div class="card-footer">
         <div class="form-actions">
-            <%= button_to "Ver", client, method: :get, class:"btn btn-primary btn-block" %>
+            <%= button_to "Ver", user_client_path(@user.id, client), method: :get, class:"btn btn-primary btn-block" %>
         </div>
     </div>
 </div>

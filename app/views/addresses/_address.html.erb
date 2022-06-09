@@ -5,7 +5,7 @@
         </div>
         <div><%= address.details %></div>
         <div class="form-actions">
-            <%= button_to "Borrar", address, method: :delete, class:'btn btn-danger btn-block' %>
+            <%= button_to "Borrar", user_client_address_path(@client.user_id, @client.id, address.id), method: :delete, class:'btn btn-danger btn-block' %>
         </div>
     </div>
 </div>

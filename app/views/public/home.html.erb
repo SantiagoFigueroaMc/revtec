@@ -1,3 +1,11 @@
-<% @clients.each do |client| %>
-  <%= render client %>
+<% if current_user %>
+  <div class="card m-3">
+    <h2>Autos para este mes: 4</h2>
+  </div>
+  <div class="card m-3">
+    <h2>Dígito de este mes: 3</h2>
+  </div>
+<% else %>
+  <h1>Bienvenido a RevTec</h1>
+  <p>inicia sesión para agendar horas o revisar tus clientes.</p>
 <% end %>
