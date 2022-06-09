@@ -1,4 +1,4 @@
-<%= form_with model: [@client, @client.cars.build ] do |form| %>
+<%= form_with model: [@user, @user.clients.find(@client.id), @user.clients.find(@client.id).cars.build] do |form| %>
   <% if car.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(car.errors.count, "error") %> no permitieron guardar el auto:</h2>

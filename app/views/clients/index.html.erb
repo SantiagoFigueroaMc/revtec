@@ -1,7 +1,14 @@
-<h1 class="m-3">Clientes</h1>
+<h1 class="m-3">Clientes <%= button_to "Agregar", new_user_client_path(@user.id), method: :get, class:'btn btn-primary btn-block' %></h1>
 
 <div id="clients">
     <% @clients.each do |client| %>
       <%= render client %>
+    <% end %>
+
+    <% if (@shared_clients.length > 0) %>
+      <h1>Compartidos</h1>
+      <% @shared_clients.each do |client| %>
+        <%= render client %>
+      <% end %>
     <% end %>
 </div>

@@ -1,0 +1,6 @@
+class AddRoleToUsers < ActiveRecord::Migration[7.0]
+  def change
+    add_reference :users, :role, foreign_key: true, default: 1
+    #Ex:- :default =>''
+  end
+end
