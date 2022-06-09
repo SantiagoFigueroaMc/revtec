@@ -23,7 +23,7 @@ class CarsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_car
-    @user = User.find(params[:user_id])
+    @user = User.find(current_user.id)
     @client = Client.find(params[:client_id])
     @car = @client.cars.find(params[:id])
   end

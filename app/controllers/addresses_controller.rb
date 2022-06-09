@@ -14,6 +14,7 @@ class AddressesController < ApplicationController
 
   # POST /addresses or /addresses.json
   def create
+    @client = Client.find(params[:client_id])
     @address = @client.addresses.create(address_params)
 
     redirect_to user_client_path(@client.user_id, @client.id)
